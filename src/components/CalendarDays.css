@@ -1,0 +1,4 @@
+.calendar__wrapper-days {
+  display: flex;
+  flex-wrap: wrap;
+}

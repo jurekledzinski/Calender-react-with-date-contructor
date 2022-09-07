@@ -1,8 +1,6 @@
 .calender {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  min-height: 260px;
+  min-height: 270px;
   padding: 10px;
   border-radius: 5px;
   background-color: var(--background-calender);

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 
 import CalendarDay from './CalendarDay';
+import './CalendarDays.css';
 
 const CalendarDays = ({
   calenderDays,
@@ -104,7 +105,7 @@ const CalendarDays = ({
   //if blank property in obj is true then color is fade for day it means is previous or next month days added to first or last week
   //if blank false means it's chosen days of month
   return (
-    <React.Fragment>
+    <div className="calendar__wrapper-days">
       {calenderDays.map((item) => (
         <CalendarDay
           classCalenderDay={
@@ -121,7 +122,7 @@ const CalendarDays = ({
           {new Date(item.day).getDate()}
         </CalendarDay>
       ))}
-    </React.Fragment>
+    </div>
   );
 };
 

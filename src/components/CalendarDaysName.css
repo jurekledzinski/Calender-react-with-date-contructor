@@ -1,0 +1,20 @@
+.calendar__wrapper-days-names {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+
+.calendar__name-day {
+  display: inline-block;
+  width: 14%;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--color-names-week);
+}
+
+@media screen and (min-width: 500px) {
+  .calendar__name-day {
+    width: 30px;
+  }
+}

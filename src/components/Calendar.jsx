@@ -3,6 +3,7 @@ import './Calendar.css';
 
 import CalendarButton from './CalendarButton';
 import CalendarDays from './CalendarDays';
+import CalendarDaysName from './CalendarDaysName';
 import CalendarTitle from './CalendarTitle';
 
 const Calendar = () => {
@@ -46,6 +47,7 @@ const Calendar = () => {
             <span className="material-symbols-outlined">navigate_next</span>
           </CalendarButton>
         </div>
+        <CalendarDaysName />
         <CalendarDays
           calenderDays={calenderDays}
           chosenMonth={chosenMonth}
