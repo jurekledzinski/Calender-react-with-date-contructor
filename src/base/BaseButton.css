@@ -1,0 +1,10 @@
+.button {
+  color: var(--color-default-button);
+  cursor: pointer;
+}
+
+.calender__button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}

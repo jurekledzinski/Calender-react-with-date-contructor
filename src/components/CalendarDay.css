@@ -1,0 +1,26 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14.2%;
+  height: 30px;
+  color: var(--color-actual-day);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.box--fade {
+  color: var(--color-not-current-days);
+  font-weight: 300;
+}
+
+.box--current {
+  background-color: var(--background-active-day);
+  color: var(--color-active-day);
+}
+
+@media screen and (min-width: 500px) {
+  .box {
+    width: 30px;
+  }
+}
