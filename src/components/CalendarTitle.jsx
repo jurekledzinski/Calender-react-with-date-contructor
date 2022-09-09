@@ -8,9 +8,17 @@ const CalendarTitle = ({ chosenMonth, chosenYear }) => {
   const getMonthName = () => {
     //I do copy of chosenMonth to not mutate state directly
     let copyMonth = chosenMonth;
-    return new Date(chosenYear, copyMonth + 1, 0).toLocaleString('en-EN', {
-      month: 'long',
-    });
+    //Set options to display long version month
+    const options = { month: 'long' };
+    //Assign name month returned from date obj to variable nameMonth
+    const nameMonth = new Date(chosenYear, copyMonth + 1, 0).toLocaleString(
+      undefined,
+      options
+    );
+    //Modify nameMonth first letter to uppercase
+    const upMonth = nameMonth.charAt(0).toUpperCase() + nameMonth.substring(1);
+    //return current name month
+    return upMonth;
   };
 
   return (
