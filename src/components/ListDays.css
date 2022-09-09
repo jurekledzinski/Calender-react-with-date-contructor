@@ -1,0 +1,22 @@
+.list {
+  width: calc(100% - 30px);
+  margin: 20px 10px 0 auto;
+}
+
+.list__item {
+  padding: 7px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: var(--background-card);
+  box-shadow: var(--box-shadow-calender);
+  color: var(--color-card-text);
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 500px) {
+  .list {
+    width: initial;
+    margin: initial;
+    margin-top: 20px;
+  }
+}
