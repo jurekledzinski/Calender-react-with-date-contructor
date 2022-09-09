@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useContext, useCallback, useEffect } from 'react';
 
 import CalendarDay from './CalendarDay';
 import './CalendarDays.css';
+
+import { StoreContextListDays } from '../store/StoreListDays';
 
 const CalendarDays = ({
   calenderDays,
@@ -10,6 +12,7 @@ const CalendarDays = ({
   chosenYear,
   setCalenderDays,
 }) => {
+  const { stateListDays } = useContext(StoreContextListDays);
   //Method to get previous days from previous month
   //To display in calendar as faded days
   //When chosenMonth or chosenYear change useCallback is called
@@ -30,6 +33,8 @@ const CalendarDays = ({
         id: Date.now() * Math.random(),
         day: new Date(chosenYear, chosenMonth, -i),
         blank: true,
+        selectable: false,
+        selected: false,
       });
     }
 
@@ -57,6 +62,8 @@ const CalendarDays = ({
         id: Date.now() * Math.random(),
         day: new Date(chosenYear, copyMonth + 1, i),
         blank: true,
+        selectable: false,
+        selected: false,
       });
     }
     //I return arr of next month days
@@ -79,6 +86,8 @@ const CalendarDays = ({
         id: Date.now() * Math.random(),
         day: new Date(chosenYear, chosenMonth, firstDate),
         blank: false,
+        selectable: true,
+        selected: false,
       });
     }
 
@@ -100,10 +109,27 @@ const CalendarDays = ({
     setCalenderDays((prev) => [...arrPrevious, ...prev, ...arrForward]);
   }, [handleGetLastWeek, handleGetFirstWeek, setCalenderDays]);
 
+  //Function to select last day from list to calendar when switch months
+  const handleSelectLastDayWhenSwitchMonth = useCallback(() => {
+    const day = stateListDays[0]?.day?.toLocaleDateString();
+
+    setCalenderDays((prev) => {
+      return prev.map((item) => ({
+        ...item,
+        selected: item.day.toLocaleDateString() === day ? true : item.selected,
+      }));
+    });
+  }, [setCalenderDays, stateListDays]);
+
+  useEffect(() => {
+    handleSelectLastDayWhenSwitchMonth();
+  }, [chosenMonth, handleSelectLastDayWhenSwitchMonth]);
+
   //item.day.toLocaleDateString() === day if current day then I give box--current class
   //get background color fade orange
   //if blank property in obj is true then color is fade for day it means is previous or next month days added to first or last week
   //if blank false means it's chosen days of month
+
   return (
     <div className="calendar__wrapper-days">
       {calenderDays.map((item) => (
@@ -111,13 +137,21 @@ const CalendarDays = ({
           classCalenderDay={
             item.day.toLocaleDateString() === day
               ? item.blank
-                ? 'box box--fade'
-                : 'box box--current'
+                ? 'button--day button--day-fade'
+                : item.selected
+                ? 'button--day button--day-current button--selected'
+                : 'button--day button--day-current'
               : item.blank
-              ? 'box box--fade'
-              : 'box'
+              ? 'button--day button--day-fade'
+              : item.selected
+              ? 'button--day button--selected'
+              : 'button--day'
           }
+          id={item.id}
           key={item.id}
+          selectable={!item.selectable}
+          setCalenderDays={setCalenderDays}
+          calenderDays={calenderDays}
         >
           {new Date(item.day).getDate()}
         </CalendarDay>
@@ -127,3 +161,13 @@ const CalendarDays = ({
 };
 
 export default CalendarDays;
+
+//Loop explenation display days
+//if  item.day.toLocaleDateString() === day means when current day and property blank is true which means it is not current month
+//then add defaukt class button--day plus button--day-fade which makes buttons fade
+//and for current day also when button (:item.selected) is true then add default class (button--day) current day (button--day-current) plus button selected (button--selected)
+//if not selected then add class default (button--day) and button--day-current
+
+//When it's not current day then if item.blank is true then add class default (button--day) and class (button--day-fade) means not current month
+//when item.blank is false and item.selected is true then add default class (button--day) and (button--selected)
+// If item.selected false then add only default class (button--day)
