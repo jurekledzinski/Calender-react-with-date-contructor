@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Calendar.css';
 
 import CalendarButton from './CalendarButton';
 import CalendarDays from './CalendarDays';
 import CalendarDaysName from './CalendarDaysName';
 import CalendarTitle from './CalendarTitle';
+import ListDays from './ListDays';
+import ListDaysCard from './ListDaysCard';
+
+import { StoreContextListDays } from '../store/StoreListDays';
 
 const Calendar = () => {
+  const { stateListDays } = useContext(StoreContextListDays);
+
   const date = new Date();
 
   //Extract current day,month,year
@@ -24,7 +30,7 @@ const Calendar = () => {
   const [chosenYear, setChosenYear] = useState(year);
 
   return (
-    <>
+    <main>
       <div className="calender">
         <div className="calender__header">
           <CalendarButton
@@ -58,7 +64,18 @@ const Calendar = () => {
           setChosenYear={setChosenYear}
         />
       </div>
-    </>
+      {Boolean(stateListDays.length) && (
+        <ListDays classListDays="list">
+          {stateListDays.map((item) => (
+            <ListDaysCard
+              classListElement="list__item"
+              day={item.day}
+              key={item.id + Date.now() + Math.random() * 3}
+            />
+          ))}
+        </ListDays>
+      )}
+    </main>
   );
 };
 
