@@ -1,7 +1,8 @@
 .calender {
-  width: 100%;
+  width: calc(100% - 20px);
   min-height: 270px;
   padding: 10px;
+  margin: 10px;
   border-radius: 5px;
   background-color: var(--background-calender);
   box-shadow: var(--box-shadow-calender);
@@ -16,14 +17,9 @@
   padding: 5px;
 }
 
-@media screen and (min-width: 300px) {
-  .calender {
-    width: 90%;
-  }
-}
-
 @media screen and (min-width: 500px) {
   .calender {
     width: 230px;
+    margin: initial;
   }
 }
