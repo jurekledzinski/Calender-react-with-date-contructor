@@ -8,3 +8,38 @@
   background-color: transparent;
   outline: none;
 }
+
+.button--day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14.2%;
+  height: 30px;
+  border: none;
+  outline: none;
+  background-color: var(--background-btn-day);
+  color: var(--color-actual-day);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.button--day-fade {
+  color: var(--color-not-current-days);
+  font-weight: 300;
+}
+
+.button--day-current {
+  background-color: var(--background-active-day);
+  color: var(--color-active-day);
+}
+
+.button--selected {
+  color: var(--color-btn-selected);
+  background-color: var(--background-btn-selected);
+}
+
+@media screen and (min-width: 500px) {
+  .button--day {
+    width: 30px;
+  }
+}
