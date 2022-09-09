@@ -40,7 +40,6 @@ body {
 #root {
   display: flex;
   justify-content: center;
-  /* padding: 10px; */
   width: 100%;
   height: inherit;
 }
