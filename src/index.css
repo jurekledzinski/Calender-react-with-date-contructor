@@ -31,7 +31,7 @@ html {
 
 body {
   width: 100%;
-  height: calc(100vh - 20px);
+  min-height: 100vh;
   background-color: var(--backgroun-body);
   font-size: 1.6rem;
   font-family: var(--font-family-roboto);
@@ -41,7 +41,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: inherit;
+  min-height: inherit;
 }
 
 @media screen and (min-width: 500px) {
